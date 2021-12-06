@@ -1,10 +1,16 @@
-import sqlite3
+import psycopg2
 
-conn = sqlite3.connect('rpg_db.sqlite3')
-curs = conn.cursor()
-query = """
-        SELECT *
-        FROM curs
-        """
+conn = psycopg2.connect(dbname='omptepfv',
+                        user='omptepfv',
+                        password='rTaXKB1JSlwLwcaGnF5MQi3xmS6pe_JT',
+                        host='kashin.db.elephantsql.com'
+)
 
-curs.execute(query)
+cur = conn.cursor()
+
+cur.execute(
+    """
+    """
+)
+
+print(cur.fetchone())
