@@ -29,3 +29,5 @@ execute_query(num_survived_query)
 # """
 
 # print("Table info:", execute_query(table_info))
+
+# COMMENT
