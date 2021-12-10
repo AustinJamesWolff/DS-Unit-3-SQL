@@ -9,6 +9,7 @@ numpy = "*"
 pandas = "*"
 sqlalchemy = "*"
 pymongo = {extras = ["srv"], version = "*"}
+dnspython = "*"
 
 [dev-packages]
 
