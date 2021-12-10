@@ -110,8 +110,16 @@ Using `sqlite3` in `northwind.py`, answer the following:
 Answer the following questions, baseline ~3-5 sentences each, as if they were interview screening questions (a form you fill when applying for a job):
 
 - In the Northwind database, what is the type of relationship between the `Employee` and `Territory` tables?
+
+**Answer**: The relationship between them is what kind of territory an employee is in in charge of. It is a a one to one or many relationship, as one employee can have more than 1 territory. They can be joined in an RDBMS by joining the Employee table with the EmployeeTerritory table, then by further joining the Territory table.
+
 - What is a situation where a document store (like MongoDB) is appropriate, and what is a situation where it is not appropriate?
+
+**Answer**: A document store (NoSQL) is appropriate to use when dealing with Big Data or unstructured data. A relational database is wonderful for small-to-medium sizes of data due to its ACID principles. However, it will reach a vertical scaling limit. Once your data grows past what's feasible on one server, we must apply horizontal scaling across multiple servers. Unfortunately, this is impossible with an RDBMS, but simple with a NoSQL (document-based) database.
+
 - What is "NewSQL", and what is it trying to achieve?
+
+**Answer**: NewSQL is trying to solve the problems of both RDBMS and NoSQL. RDBMS uses ACID principles making it very safe and effective, however it can only scale vertically (i.e. you can only scale it on one server). NoSQL can scale horizontally and can handle big data and unstructured data, but does not offer ACID functionality out of the box. NewSQL is trying to achieve both ACID-icity and horizontal scaling.
 
 ### Part 5 - Turn it in!
 Provide all the files you wrote (`demo_data.py`, `northwind.py`, `demo_data.sqlite3`), as well as this file with your answers to part 4. You're also encouraged to include the output from your queries as docstring comments, to facilitate grading and feedback. Thanks for your hard work!
