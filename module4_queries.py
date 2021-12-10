@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import psycopg2
 
 dbname = "jchcvcdb"
@@ -12,22 +13,37 @@ curs = conn.cursor()
 
 def execute_query(query, conn=conn, curs=curs):
     curs.execute(query)
+
     conn.commit()
     return curs.fetchall()
 
 num_survived_query = """
-    SELECT COUNT(survived) AS num_survived, 
-        COUNT(index) - COUNT(survived) AS num_died
-    FROM titanic;
+    SELECT survived, COUNT(*)
+    FROM titanic
+    GROUP BY survived;
 """
-print('Num survived:') 
-execute_query(num_survived_query)
+num_in_class = """
+    SELECT pclass, COUNT(*)
+    FROM titanic
+    GROUP BY pclass;
+"""
+surv_died_per_class = """
+    SELECT survived, pclass, COUNT(*)
+    FROM titanic
+    GROUP BY survived, pclass;
+"""
 
-# table_info = """
-#     SELECT *
-#     FROM information_schema.columns;
-# """
+print('Num survived and died:')
+print(pd.DataFrame(execute_query(num_survived_query), columns=[cur[0] for cur in curs.description]))
+print()
 
-# print("Table info:", execute_query(table_info))
+print('Passengers in each class:') 
+print(pd.DataFrame(execute_query(num_in_class), columns =[cur[0] for cur in curs.description]))
+print()
 
-# COMMENT
+print('Survived and died per class:')
+print(pd.DataFrame(execute_query(surv_died_per_class), columns = [cur[0] for cur in curs.description]))
+print()
+
+
+
