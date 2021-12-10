@@ -1,8 +1,5 @@
-#!/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
 
 import pymongo
-
-
 client = pymongo.MongoClient("mongodb+srv://austinwolff:Austinwolff0808@cluster0.htev8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.test
 

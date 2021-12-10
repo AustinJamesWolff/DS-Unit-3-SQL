@@ -8,6 +8,7 @@ psycopg2-binary = "*"
 numpy = "*"
 pandas = "*"
 sqlalchemy = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
