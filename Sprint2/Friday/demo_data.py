@@ -1,9 +1,11 @@
+"""Use our demo data!"""
+
 import sqlite3
 
 conn = sqlite3.connect('demo_data.sqlite3')
 curs = conn.cursor()
 
-try: 
+try:
     create_table = """
         CREATE TABLE demo (
             s VARCHAR(30) NOT NULL,
@@ -25,17 +27,20 @@ try:
 except sqlite3.OperationalError:
     print("We already have the table, see queries below.")
 
+
 def get_query(query, conn=conn, curs=curs):
+    """Get our query."""
     results = curs.execute(query).fetchall()
     conn.commit()
     return results
+
 
 get_row_count = """
     SELECT COUNT(*) AS num_rows
     FROM demo;
 """
 
-row_count = get_query(get_row_count)[0][0]
+row_count = get_query(get_row_count)
 print("Row count:", row_count)
 
 least_5 = """
@@ -44,7 +49,7 @@ least_5 = """
     WHERE x >= 5 AND y >= 5;
 """
 
-xy_at_least_5 = get_query(least_5)[0][0]
+xy_at_least_5 = get_query(least_5)
 print("Rows where x and y are at least 5:", xy_at_least_5)
 
 get_unique_y = """
@@ -52,5 +57,5 @@ get_unique_y = """
     FROM demo;
 """
 
-unique_y = get_query(get_unique_y)[0][0]
+unique_y = get_query(get_unique_y)
 print('Unique values of y:', unique_y)
